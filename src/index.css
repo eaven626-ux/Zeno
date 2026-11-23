@@ -1,0 +1,360 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: "IBM Plex Sans Arabic", "Outfit", system-ui, -apple-system, sans-serif;
+    --font-display: "Outfit", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  @media (max-width: 767px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]),
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  select:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid rgba(14, 165, 233, 0.65);
+    outline-offset: 2px;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Telegram-inspired geometric & botanical wallpaper surface */
+.chat-wallpaper-light {
+  background-color: #d9e4dd;
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(114, 179, 138, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(56, 152, 214, 0.14) 0%, transparent 48%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%234a6b5d' stroke-opacity='0.09' stroke-width='1.2'%3E%3Cpath d='M16 20l14-6-6 14-2-5-6-3z'/%3E%3Ccircle cx='58' cy='22' r='6'/%3E%3Cpath d='M54 58c4-4 10-4 14 0s-4 10-10 8-8-4-4-8z'/%3E%3Cpath d='M18 58h12M24 52v12'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dark .chat-wallpaper-light {
+  background-color: #0e1621;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(43, 82, 120, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(28, 63, 94, 0.2) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%237da4c8' stroke-opacity='0.06' stroke-width='1.2'%3E%3Cpath d='M16 20l14-6-6 14-2-5-6-3z'/%3E%3Ccircle cx='58' cy='22' r='6'/%3E%3Cpath d='M54 58c4-4 10-4 14 0s-4 10-10 8-8-4-4-8z'/%3E%3Cpath d='M18 58h12M24 52v12'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Native-feeling momentum scrollbars */
+.slim-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.slim-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.slim-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slim-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.28);
+  border-radius: 9999px;
+}
+
+.slim-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.45);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* GPU-composited settling animations */
+@keyframes zenoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zenoModalPop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes zenoPopoverIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes zenoDrawerEnd {
+  from {
+    opacity: 0;
+    transform: translate3d(-14px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zenoSlideDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zenoMsgIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 7px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-zeno-fade {
+  animation: zenoFadeIn 150ms var(--ease-smooth) both;
+}
+
+.animate-zeno-modal {
+  animation: zenoModalPop 190ms var(--ease-smooth) both;
+}
+
+.animate-zeno-popover {
+  animation: zenoPopoverIn 150ms var(--ease-smooth) both;
+}
+
+.animate-zeno-drawer {
+  animation: zenoDrawerEnd 190ms var(--ease-smooth) both;
+  will-change: transform, opacity;
+}
+
+.animate-zeno-slide-down {
+  animation: zenoSlideDown 160ms var(--ease-smooth) both;
+}
+
+.animate-zeno-msg {
+  animation: zenoMsgIn 160ms var(--ease-smooth) both;
+}
+
+.gpu-layer {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.tap-press {
+  transition:
+    transform 150ms var(--ease-smooth),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    color 150ms ease,
+    opacity 150ms ease;
+}
+
+.tap-press:active {
+  transform: scale(0.97);
+}
+
+/* Animated Sticker Motion Effects */
+@keyframes stickerBounce {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  40% {
+    transform: translate3d(0, -10px, 0) scale(1.04, 0.98);
+  }
+  70% {
+    transform: translate3d(0, 2px, 0) scale(0.98, 1.02);
+  }
+}
+
+@keyframes stickerPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.09);
+    opacity: 0.92;
+  }
+}
+
+@keyframes stickerFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) rotate(1.5deg);
+  }
+}
+
+@keyframes stickerWiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-7deg);
+  }
+  40% {
+    transform: rotate(7deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  80% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes stickerSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stickerHeartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.16);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.sticker-anim-bounce {
+  animation: stickerBounce 1.4s var(--ease-smooth) infinite;
+  will-change: transform;
+}
+
+.sticker-anim-pulse {
+  animation: stickerPulse 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.sticker-anim-float {
+  animation: stickerFloat 2.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.sticker-anim-wiggle {
+  animation: stickerWiggle 1.3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.sticker-anim-spin {
+  animation: stickerSpin 4.2s linear infinite;
+  will-change: transform;
+}
+
+.sticker-anim-heartbeat {
+  animation: stickerHeartbeat 1.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-zeno-fade,
+  .animate-zeno-modal,
+  .animate-zeno-popover,
+  .animate-zeno-drawer,
+  .animate-zeno-slide-down,
+  .animate-zeno-msg,
+  .sticker-anim-bounce,
+  .sticker-anim-pulse,
+  .sticker-anim-float,
+  .sticker-anim-wiggle,
+  .sticker-anim-spin,
+  .sticker-anim-heartbeat {
+    animation: none !important;
+  }
+
+  .tap-press,
+  .tap-press:active {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

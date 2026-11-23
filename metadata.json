@@ -1,0 +1,6 @@
+{
+  "name": "برقية | المراسلة السحابية الفورية",
+  "description": "تطبيق مراسلة فوري مستوحى من تليجرام للمحادثات الخاصة والمجموعات والقنوات السحابية في الوقت الحقيقي.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
